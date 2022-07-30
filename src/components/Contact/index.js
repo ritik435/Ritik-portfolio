@@ -1,9 +1,9 @@
+import React from 'react';
 import './index.scss';
 import { Loader } from 'react-loaders';
 import AnimatedLetters from '../AnimatedLetters';
 import { useEffect, useRef, useState } from 'react';
 import emailjs from '@emailjs/browser'
-
 const Contact = () => {
 
     const [letterClass, setLetterClass] = useState('text-animate')
@@ -15,9 +15,9 @@ const Contact = () => {
 
     const sendEmail = (e) => {
         e.preventDefault();
-        const serviceID = 'default_service';
-        const templateID = 'template_qjh4yue';
-        const public_key = "JhhT5W551LsbT8SDd"
+        const serviceID = process.env.REACT_APP_SERVICE_ID;
+        const templateID = process.env.REACT_APP_TEMPLATE_ID;
+        const public_key = process.env.REACT_APP_PUBLIC_KEY;
         emailjs
             .sendForm(
                 serviceID,
