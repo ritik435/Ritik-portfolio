@@ -4,6 +4,9 @@ import { Loader } from 'react-loaders';
 import AnimatedLetters from '../AnimatedLetters';
 import { useEffect, useRef, useState } from 'react';
 import emailjs from '@emailjs/browser'
+import Resume from "../../assets/Resume/Ritik Resume 2022.pdf";
+import { saveAs } from "file-saver";
+import { Button } from "reactstrap"
 const Contact = () => {
 
     const [letterClass, setLetterClass] = useState('text-animate')
@@ -27,13 +30,18 @@ const Contact = () => {
             )
             .then(
                 () => {
-                    alert('Message successfully sent!')
+                    alert('Thanks for your feedback. It is surely valuable for me')
                     window.location.reload(false)
                 },
                 () => {
                     alert('Failed to send the message, please try again')
                 }
             )
+    }
+    const downloadResume = () => {
+        saveAs({ Resume }, "Resume.pdf");
+        console.log("Resume")
+
     }
     return (<>
         <div className='container contact-page'>
@@ -75,6 +83,7 @@ const Contact = () => {
                             </li>
                         </ul>
                     </form>
+                    {/* <Button className='resume' onClick={downloadResume}>Download Resume</Button> */}
                 </div>
             </div>
         </div>

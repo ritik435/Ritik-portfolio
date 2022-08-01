@@ -24,7 +24,7 @@ const About = () => {
                     </h1>
 
                     <p>
-                        I'm very ambitious front-end developer looking forarole in
+                        I'm very ambitious full-stack developer looking for a role in
                         established IT company with the opportunity to work with the latest
                         technologies on challenging and diverse projects.
                     </p>
@@ -33,9 +33,7 @@ const About = () => {
                         improving my chops one design problem atatime.
                     </p>
                     <p>
-                        IfIneed to define myself in one sentence that would beafamily
-                        person,father ofabeautiful daughter,asports fanatic,photography
-                        enthusiast,and tech-obsessed !!!
+                        An ambitious problem solver with a passion for online businesses who would join a team of like-minded developers. A full stack developer and consistency in improving with new skills and techniques. Seeking an entry-level opportunity with an esteemed organization where I can utilize my skills and enhance learning in field of work
                     </p>
                 </div>
                 <div className='stage-cube-cont'>
