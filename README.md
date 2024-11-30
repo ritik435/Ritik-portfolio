@@ -1,6 +1,7 @@
 # Getting Started with Create React App
 
 This website was create in an introduction of me 'Ritik Arora' as a Full stack developer.
+
 Technology used : ReactJs, SCSS .
 
 Deployed Link : https://ritik-portfolio.vercel.app/
