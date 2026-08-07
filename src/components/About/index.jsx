@@ -4,7 +4,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-import { faReact, faHtml5, faJava, faJsSquare, faGitAlt, fa } from '@fortawesome/free-brands-svg-icons'
+import { faReact, faHtml5, faJava, faJsSquare, faGitAlt } from '@fortawesome/free-brands-svg-icons'
 import { faFlag } from '@fortawesome/free-regular-svg-icons';
 import LogoSvelte from '../../assets/images/svelte.png'
 import { Loader } from 'react-loaders';

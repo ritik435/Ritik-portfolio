@@ -18,9 +18,9 @@ const Contact = () => {
 
     const sendEmail = (e) => {
         e.preventDefault();
-        const serviceID = process.env.REACT_APP_SERVICE_ID;
-        const templateID = process.env.REACT_APP_TEMPLATE_ID;
-        const public_key = process.env.REACT_APP_PUBLIC_KEY;
+        const serviceID = import.meta.env.VITE_SERVICE_ID;
+        const templateID = import.meta.env.VITE_TEMPLATE_ID;
+        const public_key = import.meta.env.VITE_PUBLIC_KEY;
         emailjs
             .sendForm(
                 serviceID,

@@ -4,7 +4,7 @@ import LogoTitle from "../../assets/images/Asset 7.png";
 import AnimatedLetters from '../AnimatedLetters';
 import '../AnimatedLetters/index.scss'
 import './index.scss'
-import Logo from './Logo/index.js'
+import Logo from './Logo/index.jsx'
 import { Loader } from 'react-loaders'
 const Home = () => {
     const [letterClass, setLetterClass] = useState('text-animate')

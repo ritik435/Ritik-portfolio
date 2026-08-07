@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-const API_BASE = process.env.REACT_APP_API_URL || '/api';
+const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 function rnd(seed) {
   const x = Math.sin(seed * 12.9898) * 43758.5453;
