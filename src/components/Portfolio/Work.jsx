@@ -22,7 +22,7 @@ const Work = () => (
       <div className="section-label" style={{ color: 'var(--dim)' }}>Platforms I've owned before</div>
     </div>
     {platforms.map((pf, i) => (
-      <div key={i} style={{ display: 'grid', gridTemplateColumns: '230px 1fr', gap: 40, padding: '30px 40px', borderTop: '1px solid var(--line)' }}>
+      <div key={i} className="platform-row" style={{ display: 'grid', gap: 40, padding: '30px 40px', borderTop: '1px solid var(--line)' }}>
         <div className="mono" style={{ fontSize: 12, color: pf.color, lineHeight: 1.9 }}>{pf.period}</div>
         <div>
           <div style={{ fontSize: 25, fontWeight: 700, letterSpacing: '-0.02em' }}>{pf.name}</div>

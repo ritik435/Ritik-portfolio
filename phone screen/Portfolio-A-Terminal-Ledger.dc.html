@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Caveat:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--fg); }
+  a { color: var(--fg); text-decoration: none; }
+  a:hover { color: var(--c1); }
+  [data-theme="dark"] {
+    --bg: oklch(0.17 0.008 90); --panel: oklch(0.215 0.01 90); --panel2: oklch(0.25 0.012 90);
+    --line: oklch(0.32 0.012 90); --fg: oklch(0.95 0.008 90); --dim: oklch(0.69 0.012 90);
+    --c1: oklch(0.82 0.15 78); --c2: oklch(0.8 0.13 200); --c3: oklch(0.78 0.14 322);
+    --c4: oklch(0.81 0.14 145); --c5: oklch(0.78 0.15 25);
+    --hi: oklch(0.82 0.15 78 / 0.24);
+  }
+  [data-theme="light"] {
+    --bg: oklch(0.975 0.008 90); --panel: oklch(0.995 0.004 90); --panel2: oklch(0.94 0.012 90);
+    --line: oklch(0.855 0.012 90); --fg: oklch(0.21 0.012 90); --dim: oklch(0.47 0.014 90);
+    --c1: oklch(0.56 0.15 62); --c2: oklch(0.5 0.12 215); --c3: oklch(0.52 0.15 322);
+    --c4: oklch(0.5 0.13 148); --c5: oklch(0.55 0.16 25);
+    --hi: oklch(0.85 0.14 88 / 0.75);
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .rv { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+  input, textarea, select, button { font: inherit; color: inherit; }
+</style>
+</helmet>
+<div data-theme="{{ theme }}" style="min-height: 100vh; background: var(--bg); color: var(--fg); font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 16px; line-height: 1.55;">
+
+  <header style="position: sticky; top: 0; z-index: 40; display: flex; align-items: center; gap: 14px; padding: 12px clamp(18px, 5vw, 40px); background: color-mix(in oklab, var(--bg) 90%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); font-family: 'IBM Plex Mono', monospace; font-size: 13px;">
+    <span style="display: grid; place-items: center; width: 32px; height: 32px; border: 1.5px solid var(--c1); border-radius: 3px; color: var(--c1); font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; letter-spacing: -0.04em; flex: none;">RA</span>
+    <span style="font-family: 'IBM Plex Sans', sans-serif; font-size: 16px; font-weight: 600; letter-spacing: -0.01em;">Ritik Arora</span>
+    <nav style="margin-left: auto; display: flex; gap: clamp(12px, 2.4vw, 22px); align-items: center; color: var(--dim); flex-wrap: wrap;">
+      <a href="#work" style="color: var(--dim);" style-hover="color: var(--fg);">work</a>
+      <a href="#journey" style="color: var(--dim);" style-hover="color: var(--fg);">journey</a>
+      <a href="#contact" style="color: var(--dim);" style-hover="color: var(--fg);">contact</a>
+      <button onClick="{{ toggleTheme }}" style="border: 1px solid var(--line); background: transparent; border-radius: 2px; padding: 5px 10px; cursor: pointer; color: var(--dim); font-family: 'IBM Plex Mono', monospace; font-size: 12px;" style-hover="border-color: var(--c1); color: var(--c1);">{{ themeLabel }}</button>
+    </nav>
+  </header>
+
+  <section style="padding: 96px clamp(18px, 5vw, 40px) 80px; border-bottom: 1px solid var(--line);">
+    <div class="rv" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--c1); margin-bottom: 26px;">Backend engineer · ~4 years · Java, Spring Boot, distributed systems</div>
+    <h1 class="rv" style="margin: 0 0 26px; font-size: clamp(38px, 5.6vw, 74px); line-height: 1.04; letter-spacing: -0.03em; font-weight: 700; max-width: 22ch; text-wrap: balance;">Backend systems built to hold — and to <span style="background: var(--hi); padding: 0 .1em;">move the numbers</span>.</h1>
+    <p class="rv" style="margin: 0 0 42px; max-width: 60ch; font-size: 19px; color: var(--dim);">Four years shipping production backends in Core Java, Spring Boot and event-driven architecture. I owned Pre-Delivery Inspection at CarInfo from launch to 7,000+ orders a month, and the real-time socket infrastructure at 17Live that holds 50,000+ concurrent connections. The engineering is the craft. Conversion, revenue and returned engineering hours are how I keep score.</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 13px;">
+      <a href="#contact" style="padding: 11px 20px; background: var(--c1); color: var(--bg); border-radius: 2px; font-weight: 600;">Start a conversation</a>
+      <a href="uploads/Ritik_Arora_SDE2_Resume.pdf" download="" style="padding: 11px 20px; border: 1px solid var(--c2); border-radius: 2px; color: var(--c2);" style-hover="background: var(--c2); color: var(--bg);">Résumé ↓</a>
+      <a href="https://github.com/ritik435" target="_blank" rel="noopener" style="padding: 11px 20px; border: 1px solid var(--c4); border-radius: 2px; color: var(--c4);" style-hover="background: var(--c4); color: var(--bg);">GitHub</a>
+      <a href="https://www.linkedin.com/in/ritik-arora435" target="_blank" rel="noopener" style="padding: 11px 20px; border: 1px solid var(--c3); border-radius: 2px; color: var(--c3);" style-hover="background: var(--c3); color: var(--bg);">LinkedIn</a>
+    </div>
+  </section>
+
+  <section id="impact" style="border-bottom: 1px solid var(--line);">
+    <div style="padding: 46px clamp(18px, 5vw, 40px) 30px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim);">01 · The record</div>
+      <h2 style="margin: 14px 0 0; font-size: clamp(26px, 3.2vw, 40px); letter-spacing: -0.028em; line-height: 1.1; font-weight: 700; max-width: 30ch;">Numbers the systems moved.</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: {{ recordCols }}; gap: {{ recordGap }}; padding: 8px clamp(8px, 2vw, 18px) 56px;">
+      <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="6">
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: {{ recordPad }}; min-width: 0;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: {{ recordValueSize }}; font-weight: 600; letter-spacing: -0.03em; line-height: 1.05; color: {{ m.color }};">{{ m.value }}</div>
+          <div style="margin-top: 10px; font-weight: 600; font-size: {{ recordLabelSize }};">{{ m.label }}</div>
+          <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ true }}">
+            <div style="margin-top: 6px; font-size: 14px; color: var(--dim); max-width: 34ch;">{{ m.note }}</div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="work" style="border-bottom: 1px solid var(--line);">
+    <div style="padding: 52px clamp(18px, 5vw, 40px) 32px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--c5);">02 · What I'm building now</div>
+      <h2 style="margin: 14px 0 20px; font-size: clamp(28px, 3.6vw, 46px); letter-spacing: -0.03em; line-height: 1.06; font-weight: 700; max-width: 26ch;">Bringing back the <span style="background: var(--hi); padding: 0 .1em;">emotions of retail shops</span>, with a modern instant-delivery approach.</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 34px; max-width: 1150px;">
+        <p style="margin: 0; font-size: 18px;">Retail Revamp is built for small business. Its mission is to help retail owners end to end — from finding spaces to increasing sales.</p>
+        <p style="margin: 0; color: var(--dim); font-size: 17px;">The current goal is to tell a business what it is worth, and to create an automated process where owners simply state what they owe or what they own.</p>
+        <p style="margin: 0; color: var(--dim); font-size: 17px;">Underneath it: a Java offline-first sync engine with conflict resolution — 1,000+ transactions, 20+ concurrent users at sub-500ms — a SQL schema designed for multi-device sync, and Whisper voice commands so owners can simply talk to it.</p>
+      </div>
+      <div style="margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 5px 10px; border: 1px solid var(--c5); border-radius: 2px; color: var(--c5);">Offline-first sync</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 5px 10px; border: 1px solid var(--line); border-radius: 2px; color: var(--dim);">Conflict resolution</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 5px 10px; border: 1px solid var(--line); border-radius: 2px; color: var(--dim);">Business valuation</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 5px 10px; border: 1px solid var(--line); border-radius: 2px; color: var(--dim);">Owe / own automation</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 5px 10px; border: 1px solid var(--line); border-radius: 2px; color: var(--dim);">Whisper voice</span>
+      </div>
+    </div>
+
+    <div style="padding: 24px clamp(18px, 5vw, 40px) 12px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim);">Platforms I've owned before</div>
+    </div>
+    <sc-for list="{{ platforms }}" as="pf" hint-placeholder-count="2">
+      <div style="display: flex; flex-wrap: wrap; gap: 20px 40px; padding: 30px clamp(18px, 5vw, 40px); border-top: 1px solid var(--line);">
+        <div style="flex: 0 1 210px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: {{ pf.color }}; line-height: 1.9;">{{ pf.period }}</div>
+        <div style="flex: 1 1 380px; min-width: 0;">
+          <div style="font-size: 25px; font-weight: 700; letter-spacing: -0.02em;">{{ pf.name }}</div>
+          <p style="margin: 12px 0 0; color: var(--dim); font-size: 16px; max-width: 76ch;">{{ pf.text }}</p>
+          <div style="margin-top: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 12px;">{{ pf.proof }}</div>
+          <div style="margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px;">
+            <sc-for list="{{ pf.tags }}" as="t" hint-placeholder-count="6">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 4px 9px; border: 1px solid var(--line); border-radius: 2px; color: var(--dim);">{{ t }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+  </section>
+
+  <section id="journey" style="border-bottom: 1px solid var(--line);">
+    <div style="padding: 52px clamp(18px, 5vw, 40px) 8px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--c1);">03 · The journey so far</div>
+      <h2 style="margin: 14px 0 0; font-size: clamp(26px, 3.2vw, 40px); letter-spacing: -0.028em; line-height: 1.1; font-weight: 700; max-width: 30ch;">Four years, two products, one habit: <span style="background: var(--hi); padding: 0 .1em;">own the system end to end</span>.</h2>
+    </div>
+
+    <div style="display: grid; grid-template-columns: clamp(42px, 8vw, 92px) 1fr; padding: 34px clamp(18px, 5vw, 40px) 0;">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <svg viewBox="0 0 40 74" width="40" height="74" fill="none" stroke="var(--c1)" stroke-width="7" stroke-linecap="round" style="display: block;">
+          <path d="M20 74 L20 52 C 20 40, 11 36, 13 26 C 15 16, 24 14, 21 4" stroke-opacity="0.95"></path>
+        </svg>
+        <div style="width: 7px; flex: 1; min-height: 18px; background: repeating-linear-gradient(135deg, var(--c1) 0 5px, color-mix(in oklab, var(--c1) 45%, var(--bg)) 5px 10px);"></div>
+      </div>
+      <div style="padding-left: clamp(12px, 3vw, 28px);">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--c1);">Loose end · what's next</div>
+        <p style="margin: 12px 0 0; font-size: 19px; max-width: 56ch;">I am finding an opportunity where shipping is fast-paced and engineering problems get solved with justifiable trade-offs.</p>
+      </div>
+    </div>
+
+    <sc-for list="{{ jobs }}" as="j" hint-placeholder-count="2">
+      <div style="display: grid; grid-template-columns: clamp(42px, 8vw, 92px) 1fr; padding: 0 clamp(18px, 5vw, 40px);">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <div style="width: 22px; height: 22px; border-radius: 50%; border: 4px solid {{ j.color }}; background: var(--bg); flex: none;"></div>
+          <div style="width: 7px; flex: 1; min-height: 40px; background: repeating-linear-gradient(135deg, var(--c1) 0 5px, color-mix(in oklab, var(--c1) 45%, var(--bg)) 5px 10px);"></div>
+        </div>
+        <div style="padding-left: clamp(12px, 3vw, 28px); display: flex; flex-wrap: wrap; gap: 28px 36px;">
+          <div style="flex: 0 1 210px; margin-bottom: clamp(18px, 5vw, 40px);">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: {{ j.color }};">{{ j.dates }}</div>
+            <div style="margin-top: 12px; font-size: 22px; font-weight: 700; letter-spacing: -0.01em;">{{ j.role }}</div>
+            <div style="margin-top: 4px; color: var(--dim); font-size: 15px;">{{ j.company }}</div>
+            <div style="margin-top: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--dim);">{{ j.context }}</div>
+            <div style="margin-top: 16px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--dim); line-height: 1.9;">{{ j.stack }}</div>
+          </div>
+          <div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 20px; margin-bottom: clamp(18px, 5vw, 40px);">
+            <sc-for list="{{ j.bullets }}" as="b" hint-placeholder-count="6">
+              <div style="display: grid; grid-template-columns: 16px 1fr; gap: 14px;">
+                <span style="color: {{ j.color }}; font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding-top: 4px;">▸</span>
+                <div>
+                  <div style="font-weight: 600; font-size: 16px;">{{ b.title }}</div>
+                  <div style="color: var(--dim); font-size: 15px; margin-top: 3px;">{{ b.text }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+    <div style="display: grid; grid-template-columns: clamp(42px, 8vw, 92px) 1fr; padding: 0 clamp(18px, 5vw, 40px) 48px;">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <div style="width: 14px; height: 14px; border-radius: 50%; background: var(--c1); flex: none;"></div>
+      </div>
+      <div style="padding-left: clamp(12px, 3vw, 28px); font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim);">2022 · where it started</div>
+    </div>
+  </section>
+
+  <section id="case" style="border-bottom: 1px solid var(--line); background: var(--panel);">
+    <div style="padding: 52px clamp(18px, 5vw, 40px) 30px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--c3);">04 · Case study · Pre-Delivery Inspection</div>
+      <h2 style="margin: 14px 0 0; font-size: clamp(26px, 3.2vw, 40px); letter-spacing: -0.028em; line-height: 1.1; font-weight: 700; max-width: 28ch;">One service, then a <span style="background: var(--hi); padding: 0 .1em;">multi-tenant platform</span>.</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); border-top: 1px solid var(--line);">
+      <div style="padding: 32px clamp(18px, 5vw, 40px); border-right: 1px solid var(--line);">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--c2); letter-spacing: .1em;">01 · CONTEXT</div>
+        <p style="margin: 12px 0 0; color: var(--dim); font-size: 15px;">PDI started as a single-tenant service I owned end to end in Java/Spring Boot with PostgreSQL and MongoDB, config-driven pricing, and AWS Lambda report generation.</p>
+      </div>
+      <div style="padding: 32px clamp(18px, 5vw, 40px); border-right: 1px solid var(--line);">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--c3); letter-spacing: .1em;">02 · DECISION</div>
+        <p style="margin: 12px 0 0; color: var(--dim); font-size: 15px;">I re-architected it into a multi-tenant system with Kafka-driven event flows and an ops dashboard for step-level tracking, so operations could unblock orders without engineering.</p>
+      </div>
+      <div style="padding: 32px clamp(18px, 5vw, 40px);">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--c4); letter-spacing: .1em;">03 · RESULT</div>
+        <p style="margin: 12px 0 0; color: var(--dim); font-size: 15px;">7,000+ orders a month across 3 platforms, code discrepancy down 8%, fewer ops escalations. A custom config CMS followed: 50% less dev involvement, iteration twice as fast.</p>
+      </div>
+    </div>
+    <div style="padding: 26px clamp(18px, 5vw, 40px); border-top: 1px solid var(--line); font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--dim); display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center;">
+      <span>Vehicle History refactor</span>
+      <span>error rate −30%</span>
+      <span>order conversion +2%</span>
+      <span>revenue +5%</span>
+      <span>PostgreSQL tuning · S3 pricing store · Redis cache</span>
+    </div>
+  </section>
+
+  <section id="projects" style="border-bottom: 1px solid var(--line);">
+    <div style="padding: 52px clamp(18px, 5vw, 40px) 26px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--c2);">05 · Side projects</div>
+      <h2 style="margin: 14px 0 0; font-size: clamp(24px, 2.8vw, 34px); letter-spacing: -0.025em; line-height: 1.12; font-weight: 700;">Built outside work hours.</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); border-top: 1px solid var(--line);">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="2">
+        <div style="padding: 34px clamp(18px, 5vw, 40px); border-right: 1px solid var(--line);">
+          <div style="font-size: 23px; font-weight: 700; letter-spacing: -0.01em;">{{ p.name }}</div>
+          <div style="margin-top: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: {{ p.color }};">{{ p.kind }}</div>
+          <p style="margin: 16px 0 0; color: var(--dim); font-size: 15px;">{{ p.text }}</p>
+          <div style="margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px;">
+            <sc-for list="{{ p.tags }}" as="t" hint-placeholder-count="3">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 4px 9px; border: 1px solid var(--line); border-radius: 2px; color: var(--dim);">{{ t }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="stack" style="border-bottom: 1px solid var(--line);">
+    <div style="padding: 52px clamp(18px, 5vw, 40px) 26px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--c4);">06 · Stack &amp; credentials</div>
+      <h2 style="margin: 14px 0 0; font-size: clamp(24px, 2.8vw, 34px); letter-spacing: -0.025em; line-height: 1.12; font-weight: 700;">What I reach for.</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); border-top: 1px solid var(--line);">
+      <sc-for list="{{ stack }}" as="s" hint-placeholder-count="4">
+        <div style="padding: 28px clamp(18px, 5vw, 40px); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .1em; color: {{ s.color }}; text-transform: uppercase;">{{ s.group }}</div>
+          <div style="margin-top: 14px; font-size: 15px; line-height: 1.9;">{{ s.items }}</div>
+        </div>
+      </sc-for>
+      <div style="padding: 28px clamp(18px, 5vw, 40px); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .1em; color: var(--c5); text-transform: uppercase;">Education</div>
+        <div style="margin-top: 14px; font-size: 16px; font-weight: 600;">B.Tech, Computer Science</div>
+        <div style="color: var(--dim); font-size: 15px;">MD University, Rohtak · 2018–2022 · CGPA 8.0</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="board" style="border-bottom: 1px solid var(--line);">
+    <div style="padding: 52px clamp(18px, 5vw, 40px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 40px; align-items: start;">
+      <div style="max-width: 46ch;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--c3);">07 · The board</div>
+        <h2 style="margin: 14px 0 14px; font-size: clamp(24px, 2.8vw, 34px); letter-spacing: -0.025em; line-height: 1.12; font-weight: 700;">Leave a note. <span style="color: var(--dim);">Hover any note to read the whole thing.</span></h2>
+        <p style="margin: 0 0 20px; color: var(--dim); font-size: 16px;">A role, a question, or a systems problem you are stuck on — 200 characters, pinned wherever there is space. Yours comes back outlined so you can find it.</p>
+        <textarea value="{{ draft }}" onChange="{{ onDraft }}" maxLength="200" rows="3" placeholder="Write up to 200 characters…" style="width: 100%; padding: 13px; background: var(--panel); border: 1px solid var(--line); border-radius: 3px; font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; resize: vertical; color: var(--fg);"></textarea>
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 12px;">
+          <button onClick="{{ onPin }}" style="padding: 12px 20px; background: var(--c3); color: var(--bg); border: none; border-radius: 2px; font-weight: 600; cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 13px;">Paste on my board</button>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--dim);">{{ counter }}</span>
+        </div>
+      </div>
+      <div style="position: relative; height: {{ boardH }}; min-width: 0; overflow: visible; border: 1px solid var(--line); border-radius: 3px; background: var(--panel2); overflow: visible;">
+        <sc-for list="{{ notes }}" as="n" hint-placeholder-count="16">
+          <div style="position: absolute; left: {{ n.x }}; top: {{ n.y }}; width: {{ noteSize }}; height: {{ noteSize }}; z-index: {{ n.z }}; padding: {{ notePad }}; background: {{ n.color }}; color: oklch(0.25 0.02 90); border-radius: 2px; box-shadow: {{ n.shadow }}; outline: {{ n.ring }}; transform: rotate({{ n.tilt }}); transition: transform .18s ease, box-shadow .18s ease; overflow: hidden; font-family: 'Caveat', cursive; font-size: {{ noteFont }}; line-height: 1.22; cursor: default;" style-hover="z-index: 999; width: {{ noteHoverW }}; height: auto; min-height: {{ noteSize }}; overflow: visible; padding: 14px; font-size: 17px; transform: rotate(0deg) translateY(-6px); box-shadow: 0 18px clamp(18px, 5vw, 40px) rgba(0,0,0,.45);">{{ n.text }}</div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div style="padding: 66px clamp(18px, 5vw, 40px) 88px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 52px; max-width: 1240px;">
+      <div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--c1);">08 · Contact</div>
+        <h2 style="margin: 16px 0 16px; font-size: clamp(30px, 3.4vw, 44px); letter-spacing: -0.025em; line-height: 1.1;">Have a system that needs an owner?</h2>
+        <p style="margin: 0 0 26px; color: var(--dim); font-size: 17px; max-width: 44ch;">Backend roles, architecture problems, or a product whose numbers are stuck. Tell me the shape of it — I reply within a working day.</p>
+        <div style="display: flex; flex-wrap: nowrap; gap: 10px;">
+          <a href="mailto:developer.ritik435@gmail.com" style="display: flex; align-items: center; gap: 8px; flex: 0 1 auto; min-width: 0; padding: 9px 13px; border: 1px solid var(--line); border-radius: 100px; background: var(--panel); color: var(--fg);" style-hover="border-color: var(--c1); background: var(--panel2);">
+            <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--c1); flex: none;"></span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">developer.ritik435@gmail.com</span>
+          </a>
+          <a href="tel:+919817326281" style="display: flex; align-items: center; gap: 8px; flex: 0 0 auto; min-width: 0; padding: 9px 13px; border: 1px solid var(--line); border-radius: 100px; background: var(--panel); color: var(--fg);" style-hover="border-color: var(--c2); background: var(--panel2);" title="Call +91 98173 26281">
+            <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--c2); flex: none;"></span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; white-space: nowrap;">+91 98173 26281</span>
+          </a>
+        </div>
+      </div>
+      <form onSubmit="{{ onSubmit }}" style="display: flex; flex-direction: column; gap: 16px; border: 1px solid var(--line); background: var(--panel); padding: 30px; border-radius: 3px;">
+        <label style="display: flex; flex-direction: column; gap: 7px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim);">Name
+          <input required="" placeholder="Your name" style="padding: 11px 13px; background: var(--bg); border: 1px solid var(--line); border-radius: 2px; font-size: 15px; font-family: 'IBM Plex Sans', sans-serif; letter-spacing: normal; text-transform: none; color: var(--fg);">
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 7px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim);">Email
+          <input required="" type="email" placeholder="you@company.com" style="padding: 11px 13px; background: var(--bg); border: 1px solid var(--line); border-radius: 2px; font-size: 15px; font-family: 'IBM Plex Sans', sans-serif; letter-spacing: normal; text-transform: none; color: var(--fg);">
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 7px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim);">Role type / budget
+          <select style="padding: 11px 13px; background: var(--bg); border: 1px solid var(--line); border-radius: 2px; font-size: 15px; font-family: 'IBM Plex Sans', sans-serif; letter-spacing: normal; text-transform: none; color: var(--fg);">
+            <option>Full-time backend / SDE II–III</option>
+            <option>Founding engineer</option>
+            <option>Contract or consulting</option>
+            <option>Just saying hello</option>
+          </select>
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 7px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim);">Message
+          <textarea rows="5" placeholder="What are you building?" style="padding: 11px 13px; background: var(--bg); border: 1px solid var(--line); border-radius: 2px; font-size: 15px; font-family: 'IBM Plex Sans', sans-serif; letter-spacing: normal; text-transform: none; resize: vertical; color: var(--fg);"></textarea>
+        </label>
+        <button type="submit" style="margin-top: 4px; padding: 13px; background: var(--c1); color: var(--bg); border: none; border-radius: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; letter-spacing: .06em; cursor: pointer;">{{ submitLabel }}</button>
+      </form>
+    </div>
+  </section>
+
+  <footer style="padding: 24px clamp(18px, 5vw, 40px); border-top: 1px solid var(--line); font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--dim); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+    <span>Ritik Arora · Backend engineer · India</span>
+    <span>developer.ritik435@gmail.com</span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;light&quot;],&quot;default&quot;:&quot;dark&quot;,&quot;tsType&quot;:&quot;'dark'|'light'&quot;}}">
+class Component extends DCLogic {
+  state = { theme: null, sent: false, draft: '', mine: [] };
+  get theme() { return this.state.theme || this.props.theme || 'dark'; }
+  componentDidMount() {
+    const els = Array.from(document.querySelectorAll('section > div, section form'));
+    const show = el => { el.style.opacity = ''; el.style.animation = 'rise .7s cubic-bezier(.2,.7,.2,1) both'; };
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { show(e.target); io.unobserve(e.target); }
+    }), { threshold: 0.08 });
+    els.forEach(el => { el.style.opacity = '0'; io.observe(el); });
+    this._fallback = setTimeout(() => els.forEach(el => { if (el.style.opacity === '0') show(el); }), 1200);
+    this._onResize = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this._onResize);
+    this.setState({ w: window.innerWidth });
+  }
+  componentWillUnmount() { clearTimeout(this._fallback); window.removeEventListener('resize', this._onResize); }
+  get phone() { return (this.state.w || (typeof window !== 'undefined' ? window.innerWidth : 1200)) <= 700; }
+  rnd(seed) { const x = Math.sin(seed * 12.9898) * 43758.5453; return x - Math.floor(x); }
+  seed() {
+    return [
+      'Good work Ritik', 'Best of luck finding a new job', 'The 50k socket number made me stop scrolling',
+      'We are hiring backend in Bengaluru', 'Multi-tenancy with Kafka is what we are stuck on',
+      'Love that you measured revenue, not just latency', 'Config CMS cutting dev work in half is the real flex',
+      'Retail Revamp sounds genuinely useful', 'Clean writing. No fluff', 'Ping me if you want a referral',
+      'The rope timeline is a nice touch', 'Sub-500ms offline sync. Respect', 'Write more about Kafka retries',
+      'Good luck with the search', '10s to 2s is the story I would lead with', 'Whisper voice for shop owners. Thoughtful',
+      'Solid four years', 'Reaching out about a platform role', 'Very few portfolios let visitors write anything',
+      'The proof backs up the long stack list', 'Keep building', 'Ops dashboard to cut escalations is product thinking',
+      'Bookmarking this', 'How did you load-test 50k connections?', 'Rate limiting win is nice and concrete',
+      'You should blog the PDI re-architecture', 'Straight to the point', 'The metrics do the talking',
+      'Java Sockets in 2026 and it holds', 'Would hire for a founding backend role', 'The trade-offs line is exactly right',
+      'Cheering for you', 'Debezium in the stack. CDC people unite', 'Reads like an engineer who talks to product',
+      'Instrumentation bugs down 40% is underrated', 'Best of luck Ritik', 'Broad range for four years',
+      'Small business retail is hard. Rooting for it', 'Résumé right in the hero. Practical', 'Clear timeline, no filler',
+      'Add your on-call and incident work too', 'Multi-device sync schema is the hard part', 'Sharing with our hiring manager',
+      '95% auth success. Numbers everywhere', 'Big step up from a plain resume', 'Context, decision, result. It works',
+      'Mentoring three engineers while shipping all this', 'Let me pair with you on the valuation model',
+      'Whoever hires you gets a systems owner', 'Redis plus S3. Sensible boring tech', 'The one-page scroll works',
+      'Keep the board up. Fun idea', 'This is the good kind of portfolio', 'Java, Kafka, Postgres. My favourite trio'
+    ];
+  }
+  pin() {
+    const t = this.state.draft.trim();
+    if (!t) return;
+    this.setState({ mine: [t.slice(0, 200)].concat(this.state.mine), draft: '' });
+  }
+  renderVals() {
+    const paper = ['oklch(0.9 0.13 96)', 'oklch(0.89 0.09 190)', 'oklch(0.89 0.08 330)', 'oklch(0.9 0.1 140)', 'oklch(0.89 0.09 40)', 'oklch(0.92 0.07 70)'];
+    const phone = this.phone;
+    const noteW = phone ? 74 : 104, boardH = phone ? 320 : 440;
+    const place = (i, seed, extra) => {
+      const r1 = this.rnd(i + seed), r2 = this.rnd(i + seed + 90), r3 = this.rnd(i + seed + 310);
+      const bleed = Math.round(noteW * 0.55 * Math.sin(6 * Math.PI / 180)) + 2;
+      return Object.assign({
+        x: 'calc(' + (r1 * 100).toFixed(2) + '% - ' + (r1 * (noteW + 2 * bleed)).toFixed(1) + 'px + ' + bleed + 'px)',
+        y: (bleed + r2 * (boardH - noteW - 2 * bleed)).toFixed(0) + 'px',
+        tilt: (-6 + r3 * 12).toFixed(1) + 'deg',
+        z: 2 + Math.floor(r3 * 60)
+      }, extra);
+    };
+    const seeds = this.seed().filter((t, i) => !phone || i % 2 === 0);
+    const notes = seeds.map((text, i) => place(i, 1, {
+      text, color: paper[i % paper.length],
+      shadow: '0 5px 14px rgba(0,0,0,.24)', ring: '0 solid transparent'
+    }));
+    const mine = this.state.mine.map((text, i) => Object.assign(place(i, 501, {
+      text, color: 'oklch(0.94 0.14 96)',
+      shadow: '0 12px 30px rgba(0,0,0,.4)', ring: '3px solid var(--c1)'
+    }), { z: 200 + i }));
+    return {
+      theme: this.theme,
+      themeLabel: this.theme === 'dark' ? 'light' : 'dark',
+      toggleTheme: () => this.setState({ theme: this.theme === 'dark' ? 'light' : 'dark' }),
+      submitLabel: this.state.sent ? 'Sent — I\u2019ll reply within a day' : 'Send message',
+      onSubmit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      draft: this.state.draft,
+      counter: (200 - this.state.draft.length) + ' characters left',
+      onDraft: (e) => this.setState({ draft: e.target.value.slice(0, 200) }),
+      onPin: () => this.pin(),
+      notes: notes.concat(mine),
+      noteSize: noteW + 'px',
+      notePad: phone ? '7px' : '9px',
+      noteFont: phone ? '12px' : '15px',
+      noteHoverW: phone ? '170px' : '230px',
+      boardH: boardH + 'px',
+      showNotes: !phone,
+      recordCols: 'repeat(3, minmax(0, 1fr))',
+      recordPad: phone ? '14px 2px' : '26px 4px',
+      recordGap: phone ? '6px' : '12px',
+      recordValueSize: phone ? '24px' : '38px',
+      recordLabelSize: phone ? '13px' : '16px',
+      linkPad: phone ? '10px 12px' : '15px 18px',
+      linkMinH: phone ? '44px' : '56px',
+      linkFont: phone ? '13px' : '14px',
+      linkLabelW: phone ? '58px' : '68px',
+      metrics: [
+        { index: '01', color: 'var(--c2)', value: '7,000+', label: phone ? 'PDI orders / month' : 'PDI orders processed every month', note: 'Owned end to end, live across 3 platforms' },
+        { index: '02', color: 'var(--c5)', value: '+5%', label: phone ? 'Revenue uplift' : 'Revenue uplift from one refactor', note: 'Vehicle History: errors −30%, conversion +2%' },
+        { index: '03', color: 'var(--c1)', value: '50,000+', label: phone ? 'Live connections' : 'Concurrent connections', note: 'Java Sockets, Redis, heartbeats — load-tested' },
+        { index: '04', color: 'var(--c4)', value: '−50%', label: phone ? 'Dev involvement' : 'Dev involvement in config', note: 'Custom CMS, dynamic schemas, 2x faster iteration' },
+        { index: '05', color: 'var(--c3)', value: '−60%', label: phone ? 'Moderation effort' : 'Manual moderation effort', note: 'Speech-to-text and summarisation on OpenAI APIs' },
+        { index: '06', color: 'var(--c2)', value: '10s → 2s', label: phone ? 'API latency' : 'API response time', note: 'And 5s to sub-second with multithreading' }
+      ],
+      platforms: [
+        { period: 'CarInfo (Cars24) · 2025 — 2026', color: 'var(--c2)', name: 'Pre-Delivery Inspection platform',
+          text: 'A multi-tenant inspection platform built in Java/Spring Boot on PostgreSQL and MongoDB, with config-driven pricing, Kafka-driven event flows, AWS Lambda report generation, and an ops dashboard for step-level tracking and manual intervention. Product-side configuration moved into a custom CMS, so pricing, schemas and views ship without engineering.',
+          proof: '7,000+ orders/month · 3 platforms · code discrepancy −8% · dev involvement −50%',
+          tags: ['Java', 'Spring Boot', 'PostgreSQL', 'MongoDB', 'Kafka', 'AWS Lambda', 'S3', 'Redis', 'Multi-tenancy'] },
+        { period: '17Live · 2022 — 2025', color: 'var(--c3)', name: 'Real-time engagement infrastructure',
+          text: 'The real-time backend behind chat, poking and voice, architected on Java Sockets with Redis caching and heartbeat mechanisms, load-tested to 50,000+ concurrent connections. Alongside it: REST API performance work, OpenAI-backed speech-to-text and summarisation, and the BigQuery pipeline feeding recommendations.',
+          proof: '50,000+ concurrent connections · 10s → 2s API latency · moderation effort −60%',
+          tags: ['Java Sockets', 'Spring Boot', 'Redis', 'PostgreSQL', 'BigQuery', 'OpenAI APIs', 'Firebase Auth'] }
+      ],
+      jobs: [
+        { company: 'CarInfo (Cars24)', color: 'var(--c1)', role: 'Software Developer — Backend', dates: 'Jun 2025 — Apr 2026', context: 'Automotive commerce · backend & platform ownership',
+          stack: 'Java · Spring Boot · PostgreSQL · MongoDB · Kafka · AWS Lambda · S3 · Redis',
+          bullets: [
+            { title: 'Owned the PDI launch', text: 'End-to-end Pre-Delivery Inspection service with config-driven pricing and Lambda report generation; 7,000+ orders/month across 3 platforms.' },
+            { title: 'Re-architected for multi-tenancy', text: 'Kafka-driven event flows plus an ops dashboard for step-level tracking and intervention; code discrepancy down 8% and fewer ops escalations.' },
+            { title: 'Vehicle History optimisation', text: 'PostgreSQL query tuning, pricing in S3 with Redis caching; error rates down 30%, order conversion up 2%, revenue up 5%.' },
+            { title: 'Config-driven architecture', text: 'Custom CMS for product-side config with dynamic schemas and flexible views — 50% less dev involvement, 2x faster iteration.' },
+            { title: 'API security hardening', text: 'Rate limiting, auth guards and request validation to stop scraping; unauthorised API traffic down 20%.' },
+            { title: 'Centralised event tracking', text: 'Unified event-firing SDK for Firebase and Meta with unit tests and reviews across the module; instrumentation bugs down 40%.' }
+          ] },
+        { company: '17Live Inc.', color: 'var(--c4)', role: 'Software Engineer', dates: 'Sep 2022 — May 2025', context: 'Live streaming at consumer scale · real-time systems',
+          stack: 'Java Sockets · Spring Boot · PostgreSQL · Redis · BigQuery · OpenAI · Firebase',
+          bullets: [
+            { title: 'Real-time infrastructure', text: 'Architected the real-time backend with Java Sockets, Redis caching and heartbeats powering chat, poking and voice for 50,000+ concurrent connections.' },
+            { title: 'Backend API performance', text: 'Scaled REST APIs in Java/Spring Boot with PostgreSQL — 10s to 2s via SQL optimisation and lazy loading, 5s to sub-second via multithreading.' },
+            { title: 'AI-powered features', text: 'Shipped speech-to-text and conversation summarisation on OpenAI APIs, cutting manual moderation effort by 60%.' },
+            { title: 'Analytics & recommendations', text: 'Owned the BigQuery analytics pipeline; SQL and data models powering recommendation logic and product insight.' },
+            { title: 'Auth & security', text: 'Firebase Phone Auth and Google Sign-In flows to compliance standards, at a 95%+ success rate.' },
+            { title: 'Mentorship', text: 'Mentored 3 engineers across Android, iOS and backend through code reviews, unit testing and design discussion.' }
+          ] }
+      ],
+      projects: [
+        { name: 'DebatabL', color: 'var(--c3)', kind: 'Real-time Android platform · Java',
+          text: 'Real-time backend with concurrent room management, RBAC and live scoring across 50+ rooms. Built on OOP and SOLID principles with unit-tested core modules, delivered as an Android platform for structured live debates.',
+          tags: ['Concurrency', 'RBAC', 'SOLID', 'Unit testing'] },
+        { name: 'Retail Revamp', color: 'var(--c5)', kind: 'Offline-first sync engine · Java',
+          text: 'The engine behind the retail product above: conflict-resolving sync for 1,000+ transactions and 20+ concurrent users at sub-500ms, a SQL schema for multi-device sync, and Whisper voice commands for low-literacy users.',
+          tags: ['Java', 'SQL schema design', 'Conflict resolution', 'Whisper'] }
+      ],
+      stack: [
+        { group: 'Languages & concepts', color: 'var(--c1)', items: 'Java · J2EE · Python · JavaScript · OOP · SOLID · DSA · SQL/PL-SQL · System design · LLD · Multithreading · Concurrency · Design patterns · Event-driven architecture · Distributed systems' },
+        { group: 'Backend & data', color: 'var(--c2)', items: 'Spring Boot · Spring Framework · Node.js · REST APIs · Microservices · WebSockets · Java Sockets · PostgreSQL · MySQL · MongoDB · Redis · Kafka · RabbitMQ · Debezium · BigQuery · ElasticSearch · JPA/Hibernate' },
+        { group: 'Cloud & practices', color: 'var(--c4)', items: 'GCP · AWS · S3 · Lambda · Firebase · Kubernetes · Docker · CI/CD · Git · Nginx · Agile/Scrum · Unit testing · Code reviews · API security · Rate limiting' },
+        { group: 'Tools & AI', color: 'var(--c3)', items: 'OpenAI APIs · Postman · Swagger · IntelliJ · Android Studio · Jira · Gradle · Lombok · React Native · Shell script' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
