@@ -86,7 +86,7 @@ const Board = () => {
             style={{ width: '100%', padding: 13, background: 'var(--panel)', border: '1px solid var(--line)', borderRadius: 3, fontFamily: 'var(--sans)', fontSize: 15, resize: 'vertical', color: 'var(--fg)' }}
           />
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, alignItems: 'center', marginTop: 12 }}>
-            <button onClick={postNote} className="btn" style={{ background: 'var(--c3)', color: 'var(--bg)' }}>
+            <button onClick={postNote} className="btn" style={{ background: 'var(--c3)', color: 'var(--bg)' }} data-track="board-paste-note">
               Paste on my board
             </button>
             <span className="mono" style={{ fontSize: 12, color: 'var(--dim)' }}>{200 - draft.length} characters left</span>

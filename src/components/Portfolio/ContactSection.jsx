@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { trackClick } from '../../lib/analytics';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
@@ -14,6 +15,7 @@ const ContactSection = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
+      trackClick('contact-form-submit', { role: form.role });
     } catch {}
     setForm({ name: '', email: '', role: 'Full-time backend / SDE II–III', message: '' });
     setSent(true);
@@ -31,19 +33,19 @@ const ContactSection = () => {
             Backend roles, architecture problems, or a product whose numbers are stuck. Tell me the shape of it — I reply within a working day.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-            <a href="mailto:developer.ritik435@gmail.com" className="contact-pill" style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '9px 13px', border: '1px solid var(--line)', borderRadius: 100, background: 'var(--panel)', color: 'var(--fg)', minWidth: 0 }}>
+            <a href="mailto:developer.ritik435@gmail.com" className="contact-pill" data-track="contact-email" style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '9px 13px', border: '1px solid var(--line)', borderRadius: 100, background: 'var(--panel)', color: 'var(--fg)', minWidth: 0 }}>
               <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--c1)', flex: 'none' }} />
               <span className="mono" style={{ fontSize: 12, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>developer.ritik435@gmail.com</span>
             </a>
-            <a href="tel:+919817326281" className="contact-pill" style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '9px 13px', border: '1px solid var(--line)', borderRadius: 100, background: 'var(--panel)', color: 'var(--fg)' }}>
+            <a href="tel:+919817326281" className="contact-pill" data-track="contact-phone" style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '9px 13px', border: '1px solid var(--line)', borderRadius: 100, background: 'var(--panel)', color: 'var(--fg)' }}>
               <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--c2)', flex: 'none' }} />
               <span className="mono" style={{ fontSize: 12, whiteSpace: 'nowrap' }}>+91 98173 26281</span>
             </a>
-            <a href="https://www.linkedin.com/in/ritik-arora435" target="_blank" rel="noopener noreferrer" className="contact-pill contact-desktop" style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '9px 13px', border: '1px solid var(--line)', borderRadius: 100, background: 'var(--panel)', color: 'var(--fg)' }}>
+            <a href="https://www.linkedin.com/in/ritik-arora435" target="_blank" rel="noopener noreferrer" className="contact-pill contact-desktop" data-track="contact-linkedin" style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '9px 13px', border: '1px solid var(--line)', borderRadius: 100, background: 'var(--panel)', color: 'var(--fg)' }}>
               <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--c3)', flex: 'none' }} />
               <span className="mono" style={{ fontSize: 12, whiteSpace: 'nowrap' }}>linkedin.com/in/ritik-arora435</span>
             </a>
-            <a href="https://github.com/ritik435" target="_blank" rel="noopener noreferrer" className="contact-pill contact-desktop" style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '9px 13px', border: '1px solid var(--line)', borderRadius: 100, background: 'var(--panel)', color: 'var(--fg)' }}>
+            <a href="https://github.com/ritik435" target="_blank" rel="noopener noreferrer" className="contact-pill contact-desktop" data-track="contact-github" style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '9px 13px', border: '1px solid var(--line)', borderRadius: 100, background: 'var(--panel)', color: 'var(--fg)' }}>
               <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--c4)', flex: 'none' }} />
               <span className="mono" style={{ fontSize: 12, whiteSpace: 'nowrap' }}>github.com/ritik435</span>
             </a>

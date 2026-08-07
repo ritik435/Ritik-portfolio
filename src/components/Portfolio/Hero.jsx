@@ -13,10 +13,10 @@ const Hero = () => (
       Conversion, revenue and returned engineering hours are how I keep score.
     </p>
     <div className="actions mono">
-      <a href="#contact" className="btn primary">Start a conversation</a>
-      <a href="/uploads/Ritik_Arora_SDE2_Resume.pdf" download className="btn outline" style={{ borderColor: 'var(--c2)', color: 'var(--c2)' }}>Résumé ↓</a>
-      <a href="https://github.com/ritik435" target="_blank" rel="noopener noreferrer" className="btn outline" style={{ borderColor: 'var(--c4)', color: 'var(--c4)' }}>GitHub</a>
-      <a href="https://www.linkedin.com/in/ritik-arora435" target="_blank" rel="noopener noreferrer" className="btn outline" style={{ borderColor: 'var(--c3)', color: 'var(--c3)' }}>LinkedIn</a>
+      <a href="#contact" className="btn primary" data-track="hero-start-conversation">Start a conversation</a>
+      <a href="/uploads/Ritik_Arora_SDE2_Resume.pdf" download className="btn outline" style={{ borderColor: 'var(--c2)', color: 'var(--c2)' }} data-track="hero-resume-download">Résumé ↓</a>
+      <a href="https://github.com/ritik435" target="_blank" rel="noopener noreferrer" className="btn outline" style={{ borderColor: 'var(--c4)', color: 'var(--c4)' }} data-track="hero-github">GitHub</a>
+      <a href="https://www.linkedin.com/in/ritik-arora435" target="_blank" rel="noopener noreferrer" className="btn outline" style={{ borderColor: 'var(--c3)', color: 'var(--c3)' }} data-track="hero-linkedin">LinkedIn</a>
     </div>
   </section>
 );

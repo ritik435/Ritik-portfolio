@@ -3,10 +3,10 @@ const Header = ({ theme, toggleTheme }) => (
     <span className="logo-box">RA</span>
     <span className="name">Ritik Arora</span>
     <nav>
-      <a href="#work">work</a>
-      <a href="#journey">journey</a>
-      <a href="#contact">contact</a>
-      <button className="theme-btn" onClick={toggleTheme}>
+      <a href="#work" data-track="nav-work">work</a>
+      <a href="#journey" data-track="nav-journey">journey</a>
+      <a href="#contact" data-track="nav-contact">contact</a>
+      <button className="theme-btn" onClick={toggleTheme} data-track="theme-toggle">
         {theme === 'dark' ? 'light' : 'dark'}
       </button>
     </nav>
