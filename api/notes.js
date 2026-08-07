@@ -1,0 +1,27 @@
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+
+export default async function handler(req, res) {
+  if (req.method === 'GET') {
+    const { data, error } = await supabase
+      .from('notes')
+      .select('text')
+      .order('created_at', { ascending: true });
+    if (error) return res.status(500).json({ error: error.message });
+    return res.json(data.map(n => n.text));
+  }
+
+  if (req.method === 'POST') {
+    const { text } = req.body;
+    if (!text || typeof text !== 'string' || text.trim().length === 0) {
+      return res.status(400).json({ error: 'text required' });
+    }
+    const note = text.trim().slice(0, 200);
+    const { error } = await supabase.from('notes').insert({ text: note });
+    if (error) return res.status(500).json({ error: error.message });
+    return res.status(201).json({ ok: true, note });
+  }
+
+  res.status(405).json({ error: 'Method not allowed' });
+}
