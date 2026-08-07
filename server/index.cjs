@@ -49,7 +49,12 @@ app.post('/api/notes', async (req, res) => {
   const note = text.trim().slice(0, 200);
 
   if (supabase) {
-    const { error } = await supabase.from('notes').insert({ text: note });
+    const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || '';
+    let geo = {};
+    try { geo = await fetch(`http://ip-api.com/json/${ip}?fields=city,country`).then(r => r.json()); } catch {}
+    const { error } = await supabase.from('notes').insert({
+      text: note, ip, city: geo.city || null, country: geo.country || null,
+    });
     if (error) return res.status(500).json({ error: error.message });
     return res.status(201).json({ ok: true, note });
   }
