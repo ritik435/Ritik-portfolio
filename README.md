@@ -2,7 +2,7 @@
 
 Personal portfolio site. Backend engineer, ~4 years, Java & Spring Boot.
 
-**Live:** [ritik-portfolio.vercel.app](https://ritik-portfolio.vercel.app)
+**Live:** [ritik-arora.vercel.app](https://ritik-arora.vercel.app/)
 
 ## Tech Stack
 
@@ -30,3 +30,6 @@ Copy `.env` and fill in your values:
 ```bash
 npm run build      # outputs to /build
 ```
+
+<img width="1440" height="810" alt="Screenshot 2026-08-07 at 9 01 29 PM" src="https://github.com/user-attachments/assets/d3e63568-fded-46ba-a22d-c09bb2256dae" />
+
