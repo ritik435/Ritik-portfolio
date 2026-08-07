@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--fg); }
+  a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  a:hover { color: var(--accent); border-color: var(--accent); }
+  [data-theme="light"] {
+    --bg: oklch(0.975 0.012 85); --card: oklch(0.995 0.006 85); --rule: oklch(0.83 0.015 75);
+    --fg: oklch(0.22 0.02 60); --dim: oklch(0.46 0.02 60); --accent: oklch(0.52 0.13 25);
+  }
+  [data-theme="dark"] {
+    --bg: oklch(0.19 0.014 60); --card: oklch(0.235 0.016 60); --rule: oklch(0.36 0.018 60);
+    --fg: oklch(0.94 0.012 85); --dim: oklch(0.71 0.014 75); --accent: oklch(0.74 0.12 32);
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  input, textarea, select, button { font: inherit; color: inherit; }
+</style>
+</helmet>
+<div data-theme="{{ theme }}" style="min-height: 100vh; background: var(--bg); color: var(--fg); font-family: 'Newsreader', Georgia, serif; font-size: 18px; line-height: 1.6;">
+
+  <header style="display: flex; align-items: baseline; gap: 20px; padding: 26px 7vw 20px; border-bottom: 2px solid var(--fg);">
+    <span style="font-size: 22px; font-weight: 500; letter-spacing: -0.01em;">Ritik Arora</span>
+    <span style="font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--dim);">Backend engineer · Product impact</span>
+    <button onClick="{{ toggleTheme }}" style="margin-left: auto; font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; background: none; border: 1px solid var(--rule); border-radius: 100px; padding: 7px 15px; cursor: pointer;" style-hover="border-color: var(--accent); color: var(--accent);">{{ themeLabel }}</button>
+  </header>
+
+  <section style="padding: 8vh 7vw 7vh; border-bottom: 1px solid var(--rule);">
+    <div style="font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent);">Issue no. 01 · Four years of shipped systems</div>
+    <h1 style="margin: 26px 0 0; font-size: clamp(42px, 7vw, 96px); line-height: 1.0; font-weight: 300; letter-spacing: -0.035em; max-width: 24ch; text-wrap: balance;">The engineer they call when the metric has to move.</h1>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 48px; max-width: 1100px;">
+      <p style="margin: 0; font-size: 21px; color: var(--fg);">Backend software engineer with roughly four years in Core Java, J2EE, Spring Boot and JPA/Hibernate, building production systems on SOLID principles and event-driven architecture.</p>
+      <p style="margin: 0; color: var(--dim);">At CarInfo I owned Pre-Delivery Inspection from launch to 7,000+ orders a month across three platforms and re-architected it into a multi-tenant platform. At 17Live I built real-time Java socket infrastructure for 50,000+ concurrent connections. Scalability is the craft; conversion, revenue and returned engineering hours are the point.</p>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 44px; font-family: 'Archivo', sans-serif; font-size: 12px; letter-spacing: .1em; text-transform: uppercase;">
+      <a href="#contact" style="padding: 13px 24px; background: var(--fg); color: var(--bg); border: none; border-radius: 100px;">Get in touch</a>
+      <a href="uploads/Ritik_Arora_SDE2_Resume.pdf" download style="padding: 13px 24px; border: 1px solid var(--rule); border-radius: 100px;">Résumé, PDF</a>
+      <a href="https://github.com/ritik435" target="_blank" rel="noopener" style="padding: 13px 24px; border: 1px solid var(--rule); border-radius: 100px;">GitHub</a>
+      <a href="https://www.linkedin.com/in/ritik-arora435" target="_blank" rel="noopener" style="padding: 13px 24px; border: 1px solid var(--rule); border-radius: 100px;">LinkedIn</a>
+    </div>
+  </section>
+
+  <section style="padding: 6vh 7vw; border-bottom: 1px solid var(--rule);">
+    <div style="font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--dim); margin-bottom: 40px;">The record</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 48px 56px;">
+      <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="6">
+        <div style="border-top: 2px solid var(--fg); padding-top: 18px;">
+          <div style="font-size: clamp(40px, 4.4vw, 62px); line-height: 1; font-weight: 300; letter-spacing: -0.03em;">{{ m.value }}</div>
+          <div style="margin-top: 12px; font-family: 'Archivo', sans-serif; font-size: 13px; font-weight: 500; line-height: 1.45;">{{ m.label }}</div>
+          <div style="margin-top: 8px; font-size: 16px; color: var(--dim); font-style: italic;">{{ m.note }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding: 7vh 7vw; border-bottom: 1px solid var(--rule); background: var(--card);">
+    <div style="font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--dim);">Case file</div>
+    <h2 style="margin: 18px 0 0; font-size: clamp(30px, 4vw, 52px); font-weight: 300; letter-spacing: -0.025em; max-width: 26ch; line-height: 1.08;">Pre-Delivery Inspection: one service, then a platform</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 44px; margin-top: 44px; max-width: 1200px;">
+      <div>
+        <div style="font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;">Context</div>
+        <p style="margin: 0; color: var(--dim);">PDI launched as a single-tenant service I owned end to end in Java/Spring Boot with PostgreSQL and MongoDB, config-driven pricing, and AWS Lambda report generation.</p>
+      </div>
+      <div>
+        <div style="font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;">Decision</div>
+        <p style="margin: 0; color: var(--dim);">I re-architected it into a multi-tenant system on Kafka-driven event flows, with an ops dashboard for step-level tracking and intervention so operations could unblock orders without engineering.</p>
+      </div>
+      <div>
+        <div style="font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;">Result</div>
+        <p style="margin: 0; color: var(--dim);">7,000+ orders a month across three platforms, code discrepancy down 8%, ops escalations reduced. A custom config CMS followed: 50% less dev involvement, iteration twice as fast.</p>
+      </div>
+    </div>
+    <blockquote style="margin: 52px 0 0; padding-left: 28px; border-left: 2px solid var(--accent); font-size: clamp(22px, 2.6vw, 32px); font-weight: 300; font-style: italic; letter-spacing: -0.02em; max-width: 34ch; line-height: 1.3;">The Vehicle History refactor cut error rates 30% — and moved order conversion ~2% and revenue ~5%.</blockquote>
+  </section>
+
+  <section style="border-bottom: 1px solid var(--rule);">
+    <div style="padding: 6vh 7vw 0; font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--dim);">Experience</div>
+    <sc-for list="{{ jobs }}" as="j" hint-placeholder-count="2">
+      <div style="padding: 44px 7vw; border-bottom: 1px solid var(--rule);">
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px;">
+          <h3 style="margin: 0; font-size: clamp(26px, 3vw, 38px); font-weight: 400; letter-spacing: -0.02em;">{{ j.company }}</h3>
+          <span style="font-family: 'Archivo', sans-serif; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent);">{{ j.role }}</span>
+          <span style="margin-left: auto; font-family: 'Archivo', sans-serif; font-size: 12px; color: var(--dim);">{{ j.dates }}</span>
+        </div>
+        <div style="columns: 2 320px; column-gap: 48px; margin-top: 24px;">
+          <sc-for list="{{ j.bullets }}" as="b" hint-placeholder-count="5">
+            <div style="break-inside: avoid; margin-bottom: 20px;">
+              <div style="font-family: 'Archivo', sans-serif; font-size: 13px; font-weight: 600;">{{ b.title }}</div>
+              <div style="color: var(--dim); font-size: 17px; margin-top: 3px;">{{ b.text }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top: 8px; font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .08em; color: var(--dim);">{{ j.stack }}</div>
+      </div>
+    </sc-for>
+  </section>
+
+  <section style="padding: 6vh 7vw; border-bottom: 1px solid var(--rule);">
+    <div style="font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--dim); margin-bottom: 36px;">Selected projects</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 40px;">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="2">
+        <article style="background: var(--card); border: 1px solid var(--rule); padding: 34px;">
+          <h3 style="margin: 0; font-size: 30px; font-weight: 400; letter-spacing: -0.02em;">{{ p.name }}</h3>
+          <div style="margin-top: 6px; font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--accent);">{{ p.kind }}</div>
+          <p style="margin: 18px 0 0; color: var(--dim); font-size: 17px;">{{ p.text }}</p>
+          <div style="margin-top: 20px; font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .08em; color: var(--dim);">{{ p.tagline }}</div>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding: 6vh 7vw; border-bottom: 1px solid var(--rule); background: var(--card);">
+    <div style="font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--dim); margin-bottom: 34px;">Stack & credentials</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 36px;">
+      <sc-for list="{{ stack }}" as="s" hint-placeholder-count="4">
+        <div>
+          <div style="font-family: 'Archivo', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .06em; padding-bottom: 10px; border-bottom: 1px solid var(--rule);">{{ s.group }}</div>
+          <div style="margin-top: 12px; color: var(--dim); font-size: 17px;">{{ s.items }}</div>
+        </div>
+      </sc-for>
+      <div>
+        <div style="font-family: 'Archivo', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .06em; padding-bottom: 10px; border-bottom: 1px solid var(--rule);">Education</div>
+        <div style="margin-top: 12px; font-size: 19px;">B.Tech, Computer Science</div>
+        <div style="color: var(--dim); font-size: 17px;">MD University, Rohtak · 2018–2022 · CGPA 8.0</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="padding: 8vh 7vw 9vh;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 60px; align-items: start;">
+      <div>
+        <div style="font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--dim);">Correspondence</div>
+        <h2 style="margin: 20px 0 18px; font-size: clamp(34px, 4.6vw, 58px); font-weight: 300; letter-spacing: -0.03em; line-height: 1.05; max-width: 18ch;">Write to me.</h2>
+        <p style="margin: 0 0 28px; color: var(--dim); max-width: 42ch;">Backend and platform roles, architecture that needs an owner, or a product whose numbers have flattened out.</p>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-family: 'Archivo', sans-serif; font-size: 14px;">
+          <a href="mailto:developer.ritik435@gmail.com">developer.ritik435@gmail.com</a>
+          <span style="color: var(--dim);">+91 98173 26281</span>
+          <a href="https://www.linkedin.com/in/ritik-arora435" target="_blank" rel="noopener">linkedin.com/in/ritik-arora435</a>
+          <a href="https://github.com/ritik435" target="_blank" rel="noopener">github.com/ritik435</a>
+        </div>
+      </div>
+      <form onSubmit="{{ onSubmit }}" style="display: flex; flex-direction: column; gap: 22px;">
+        <label style="display: flex; flex-direction: column; gap: 8px; font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--dim);">Name
+          <input required style="border: none; border-bottom: 1px solid var(--rule); background: transparent; padding: 10px 2px; font-family: 'Newsreader', serif; font-size: 20px; letter-spacing: normal; text-transform: none; color: var(--fg);">
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 8px; font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--dim);">Email
+          <input required type="email" style="border: none; border-bottom: 1px solid var(--rule); background: transparent; padding: 10px 2px; font-family: 'Newsreader', serif; font-size: 20px; letter-spacing: normal; text-transform: none; color: var(--fg);">
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 8px; font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--dim);">Role type / budget
+          <select style="border: none; border-bottom: 1px solid var(--rule); background: transparent; padding: 10px 2px; font-family: 'Newsreader', serif; font-size: 20px; letter-spacing: normal; text-transform: none; color: var(--fg);">
+            <option>Full-time backend / SDE II–III</option>
+            <option>Founding engineer</option>
+            <option>Contract or consulting</option>
+            <option>Just saying hello</option>
+          </select>
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 8px; font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--dim);">Message
+          <textarea rows="4" style="border: none; border-bottom: 1px solid var(--rule); background: transparent; padding: 10px 2px; font-family: 'Newsreader', serif; font-size: 20px; letter-spacing: normal; text-transform: none; resize: vertical; color: var(--fg);"></textarea>
+        </label>
+        <button type="submit" style="align-self: start; margin-top: 6px; padding: 14px 30px; background: var(--fg); color: var(--bg); border: none; border-radius: 100px; font-family: 'Archivo', sans-serif; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; cursor: pointer;">{{ submitLabel }}</button>
+      </form>
+    </div>
+  </section>
+
+  <footer style="padding: 24px 7vw; border-top: 2px solid var(--fg); font-family: 'Archivo', sans-serif; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+    <span>Ritik Arora · India</span>
+    <span>Style B — Editorial Case File</span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light'|'dark'&quot;}}">
+class Component extends DCLogic {
+  state = { theme: null, sent: false };
+  get theme() { return this.state.theme || this.props.theme || 'light'; }
+  componentDidMount() {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.style.opacity = ''; e.target.style.animation = 'fadeUp .8s cubic-bezier(.2,.7,.2,1) both'; io.unobserve(e.target); }
+    }), { threshold: 0.1 });
+    document.querySelectorAll('section h1, section h2, section > div > div, article, blockquote').forEach(el => { el.style.opacity = '0'; io.observe(el); });
+  }
+  renderVals() {
+    return {
+      theme: this.theme,
+      themeLabel: this.theme === 'light' ? 'Dark' : 'Light',
+      toggleTheme: () => this.setState({ theme: this.theme === 'light' ? 'dark' : 'light' }),
+      submitLabel: this.state.sent ? 'Sent, thank you' : 'Send',
+      onSubmit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      metrics: [
+        { value: '7,000+', label: 'PDI orders per month', note: 'owned end to end, live across three platforms' },
+        { value: '−50%', label: 'Dev involvement in product config', note: 'custom CMS, dynamic schemas, 2x faster iteration' },
+        { value: '−60%', label: 'Manual moderation effort', note: 'speech-to-text and summarisation on OpenAI APIs' },
+        { value: '50,000+', label: 'Concurrent connections held', note: 'Java Sockets, Redis, heartbeats — load-tested' },
+        { value: '~5%', label: 'Revenue uplift', note: 'Vehicle History refactor, ~2% order conversion' },
+        { value: '10s → 2s', label: 'API response time', note: 'and 5s to sub-second with multithreading' }
+      ],
+      jobs: [
+        { company: 'CarInfo (Cars24)', role: 'Software Developer — Backend', dates: 'June 2025 — April 2026',
+          stack: 'Java · Spring Boot · PostgreSQL · MongoDB · Kafka · AWS Lambda · S3 · Redis',
+          bullets: [
+            { title: 'Feature launch — PDI', text: 'Owned the Pre-Delivery Inspection service end to end with config-driven pricing and Lambda report generation; 7,000+ orders a month across three platforms.' },
+            { title: 'Scale & multi-tenancy', text: 'Re-architected PDI into a multi-tenant system with Kafka event flows and an ops dashboard for step-level tracking; code discrepancy down 8%.' },
+            { title: 'Vehicle History optimisation', text: 'PostgreSQL query tuning with pricing in S3 behind a Redis cache; error rates down 30%, ~2% order conversion, ~5% revenue uplift.' },
+            { title: 'Config-driven architecture', text: 'Built a custom CMS for product-side config — dynamic schemas, flexible views, 50% less dev involvement.' },
+            { title: 'API security hardening', text: 'Rate limiting, auth guards and request validation against scraping; unauthorised traffic down 20%.' },
+            { title: 'Centralised event tracking', text: 'A unified event-firing SDK for Firebase and Meta, with reviews and unit tests across the module; instrumentation bugs down 40%.' }
+          ] },
+        { company: '17Live Inc.', role: 'Software Engineer', dates: 'September 2022 — May 2025',
+          stack: 'Java Sockets · Spring Boot · PostgreSQL · Redis · BigQuery · OpenAI · Firebase',
+          bullets: [
+            { title: 'Real-time infrastructure', text: 'Architected the real-time backend with Java Sockets, Redis caching and heartbeats, powering chat, poking and voice for 50,000+ concurrent connections.' },
+            { title: 'Backend API development', text: 'Scaled REST APIs with PostgreSQL: 10s to 2s through SQL optimisation and lazy loading, 5s to sub-second through multithreading.' },
+            { title: 'AI-powered features', text: 'Shipped speech-to-text and conversation summarisation via OpenAI APIs, cutting manual moderation ~60%.' },
+            { title: 'Analytics & recommendations', text: 'Owned the BigQuery pipeline and the data models behind recommendation logic and product insight.' },
+            { title: 'Authentication & security', text: 'Firebase Phone Auth and Google Sign-In flows to compliance standards, at a 95%+ success rate.' },
+            { title: 'Cross-functional mentorship', text: 'Mentored three engineers across Android, iOS and backend through code reviews, unit testing and design discussion.' }
+          ] }
+      ],
+      projects: [
+        { name: 'Retail Revamp', kind: 'Offline-first sync engine',
+          text: 'A Java sync engine with conflict resolution carrying 1,000+ transactions and 20+ concurrent users at sub-500ms, on a SQL schema designed for multi-device sync. Whisper voice commands make it usable for low-literacy users.',
+          tagline: 'Java · SQL schema design · conflict resolution · Whisper' },
+        { name: 'DebatabL', kind: 'Real-time debate platform',
+          text: 'A real-time Java backend with concurrent room management, RBAC and live scoring across 50+ rooms, built on OOP and SOLID principles with unit-tested core modules and delivered as an Android platform for structured live debates.',
+          tagline: 'Concurrency · RBAC · SOLID · unit testing' }
+      ],
+      stack: [
+        { group: 'Languages & concepts', items: 'Java, J2EE, Python, JavaScript, OOP, SOLID, DSA, SQL and PL/SQL, system design, LLD, multithreading, concurrency, design patterns, event-driven architecture, distributed systems.' },
+        { group: 'Backend & data', items: 'Spring Boot, Spring Framework, Node.js, REST APIs, microservices, WebSockets, Java Sockets, PostgreSQL, MySQL, MongoDB, Redis, Kafka, RabbitMQ, Debezium, BigQuery, ElasticSearch, JPA/Hibernate.' },
+        { group: 'Cloud & practices', items: 'GCP, AWS, S3, Lambda, Firebase, Kubernetes, Docker, CI/CD, Git, Nginx, Agile/Scrum, unit testing, code reviews, API security, rate limiting.' },
+        { group: 'Tools & AI', items: 'OpenAI APIs, Postman, Swagger, IntelliJ, Android Studio, Jira, Gradle, Lombok, React Native, shell scripting.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
