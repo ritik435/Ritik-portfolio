@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import './App.scss';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Portfolio from './components/Portfolio';
@@ -10,9 +10,14 @@ import { trackPageView, initClickTracking } from './lib/analytics';
 
 function App() {
   const location = useLocation();
+  const tracked = useRef('');
 
   useEffect(() => { initClickTracking(); }, []);
-  useEffect(() => { trackPageView(location.pathname); }, [location.pathname]);
+  useEffect(() => {
+    if (tracked.current === location.pathname) return;
+    tracked.current = location.pathname;
+    trackPageView(location.pathname);
+  }, [location.pathname]);
 
   return (
     <Routes>
