@@ -2,21 +2,21 @@ import { jobs } from './data';
 
 const Journey = () => (
   <section id="journey" className="section-border">
-    <div style={{ padding: '52px 40px 8px' }}>
+    <div style={{ padding: '52px clamp(18px, 5vw, 40px) 8px' }}>
       <div className="section-label" style={{ color: 'var(--c1)' }}>03 · The journey so far</div>
       <h2 className="section-title">
         Four years, two products, one habit: <span className="highlight">own the system end to end</span>.
       </h2>
     </div>
 
-    <div className="timeline-grid" style={{ display: 'grid', gridTemplateColumns: '92px 1fr', padding: '34px 40px 6px' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'clamp(42px, 8vw, 92px) 1fr', padding: '34px clamp(18px, 5vw, 40px) 0' }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <svg viewBox="0 0 40 92" width="40" height="92" fill="none" stroke="var(--c1)" strokeWidth="3" strokeLinecap="round">
-          <path d="M9 4 C 3 22, 33 30, 22 52 C 15 68, 20 78, 20 90" strokeDasharray="7 5" />
+        <svg viewBox="0 0 40 74" width="40" height="74" fill="none" stroke="var(--c1)" strokeWidth="7" strokeLinecap="round" style={{ display: 'block' }}>
+          <path d="M20 74 L20 52 C 20 40, 11 36, 13 26 C 15 16, 24 14, 21 4" strokeOpacity="0.95" />
         </svg>
-        <div className="timeline-bar" style={{ minHeight: 24 }} />
+        <div style={{ width: 7, flex: 1, minHeight: 18, background: 'repeating-linear-gradient(135deg, var(--c1) 0 5px, color-mix(in oklab, var(--c1) 45%, var(--bg)) 5px 10px)' }} />
       </div>
-      <div style={{ paddingLeft: 28 }}>
+      <div style={{ paddingLeft: 'clamp(12px, 3vw, 28px)' }}>
         <div className="section-label" style={{ color: 'var(--c1)', letterSpacing: '.12em' }}>Loose end · what's next</div>
         <p style={{ margin: '12px 0 0', fontSize: 19, maxWidth: '56ch' }}>
           I am finding an opportunity where shipping is fast-paced and engineering problems get solved with justifiable trade-offs.
@@ -25,20 +25,20 @@ const Journey = () => (
     </div>
 
     {jobs.map((j, i) => (
-      <div key={i} className="timeline-grid" style={{ display: 'grid', gridTemplateColumns: '92px 1fr', padding: '0 40px 40px' }}>
+      <div key={i} style={{ display: 'grid', gridTemplateColumns: 'clamp(42px, 8vw, 92px) 1fr', padding: '0 clamp(18px, 5vw, 40px)' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div className="timeline-node" style={{ borderColor: j.color }} />
           <div className="timeline-bar" />
         </div>
-        <div className="job-inner" style={{ paddingLeft: 28, display: 'grid', gridTemplateColumns: '230px 1fr', gap: 36 }}>
-          <div>
+        <div style={{ paddingLeft: 'clamp(12px, 3vw, 28px)', display: 'flex', flexWrap: 'wrap', gap: '28px 36px' }}>
+          <div style={{ flex: '0 1 210px', marginBottom: 'clamp(18px, 5vw, 40px)' }}>
             <div className="mono" style={{ fontSize: 12, color: j.color }}>{j.dates}</div>
             <div style={{ marginTop: 12, fontSize: 22, fontWeight: 700, letterSpacing: '-0.01em' }}>{j.role}</div>
             <div style={{ marginTop: 4, color: 'var(--dim)', fontSize: 15 }}>{j.company}</div>
             <div className="mono" style={{ marginTop: 6, fontSize: 12, color: 'var(--dim)' }}>{j.context}</div>
             <div className="mono" style={{ marginTop: 16, fontSize: 12, color: 'var(--dim)', lineHeight: 1.9 }}>{j.stack}</div>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+          <div style={{ flex: '1 1 380px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 'clamp(18px, 5vw, 40px)' }}>
             {j.bullets.map((b, bi) => (
               <div key={bi} style={{ display: 'grid', gridTemplateColumns: '16px 1fr', gap: 14 }}>
                 <span className="bullet-marker" style={{ color: j.color }}>▸</span>

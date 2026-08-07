@@ -6,21 +6,21 @@ const steps = [
 
 const CaseStudy = () => (
   <section id="case" className="section-border case-section">
-    <div style={{ padding: '52px 40px 30px' }}>
+    <div style={{ padding: '52px clamp(18px, 5vw, 40px) 30px' }}>
       <div className="section-label" style={{ color: 'var(--c3)' }}>04 · Case study · Pre-Delivery Inspection</div>
       <h2 className="section-title" style={{ maxWidth: '28ch' }}>
         One service, then a <span className="highlight">multi-tenant platform</span>.
       </h2>
     </div>
-    <div className="grid-border">
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', borderTop: '1px solid var(--line)' }}>
       {steps.map((s, i) => (
-        <div key={i} style={{ padding: '32px 40px', borderRight: '1px solid var(--line)' }}>
+        <div key={i} style={{ padding: '32px clamp(18px, 5vw, 40px)', borderRight: '1px solid var(--line)' }}>
           <div className="mono" style={{ fontSize: 12, color: s.color, letterSpacing: '.1em' }}>{s.num} · {s.title}</div>
           <p style={{ margin: '12px 0 0', color: 'var(--dim)', fontSize: 15 }}>{s.text}</p>
         </div>
       ))}
     </div>
-    <div className="mono" style={{ padding: '26px 40px', borderTop: '1px solid var(--line)', fontSize: 13, color: 'var(--dim)', display: 'flex', flexWrap: 'wrap', gap: '10px 22px' }}>
+    <div className="mono" style={{ padding: '26px clamp(18px, 5vw, 40px)', borderTop: '1px solid var(--line)', fontSize: 13, color: 'var(--dim)', display: 'flex', flexWrap: 'wrap', gap: '10px 22px' }}>
       <span>Vehicle History refactor</span>
       <span>error rate −30%</span>
       <span>order conversion +2%</span>
