@@ -60,11 +60,13 @@ export const projects = [
     name: 'DebatabL', color: 'var(--c3)', kind: 'Real-time Android platform · Java',
     text: 'Real-time backend with concurrent room management, RBAC and live scoring across 50+ rooms. Built on OOP and SOLID principles with unit-tested core modules, delivered as an Android platform for structured live debates.',
     tags: ['Concurrency', 'RBAC', 'SOLID', 'Unit testing'],
+    link: 'https://play.google.com/store/apps/details?id=com.turings.chatter&hl=en_US',
   },
   {
     name: 'Retail Revamp', color: 'var(--c5)', kind: 'Offline-first sync engine · Java',
     text: 'The engine behind the retail product above: conflict-resolving sync for 1,000+ transactions and 20+ concurrent users at sub-500ms, a SQL schema for multi-device sync, and Whisper voice commands for low-literacy users.',
     tags: ['Java', 'SQL schema design', 'Conflict resolution', 'Whisper'],
+    link: 'https://stitch.withgoogle.com/preview/14470469387354206502?node-id=96361b575f2f45d9a64700e9476d3cdf',
   },
 ];
 

@@ -123,9 +123,21 @@
 /* Footer */
 .pf-footer { padding: 24px clamp(18px, 5vw, 40px); border-top: 1px solid var(--line); font-family: var(--mono); font-size: 12px; color: var(--dim); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 
+/* Checkout button */
+.checkout-btn {
+  font-family: var(--mono); font-size: 12px; font-weight: 600;
+  padding: 5px 14px; border-radius: 6px; border: 1px solid var(--line);
+  background: var(--panel); color: var(--fg); text-decoration: none;
+  white-space: nowrap; transition: background 0.15s, border-color 0.15s;
+}
+.checkout-btn:hover { background: var(--panel2); border-color: var(--dim); color: var(--fg); }
+.checkout-mobile { display: none; }
+
 /* Responsive */
 @media (max-width: 700px) {
   .metric-note { display: none; }
   .pf-form { padding: 20px; }
   .contact-desktop { display: none !important; }
+  .checkout-desktop { display: none !important; }
+  .checkout-mobile { display: inline-block !important; }
 }
