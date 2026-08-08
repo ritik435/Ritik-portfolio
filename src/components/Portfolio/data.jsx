@@ -1,3 +1,10 @@
+export const LINKS = {
+  debatabl: 'https://play.google.com/store/apps/details?id=com.turings.chatter&hl=en_US',
+  retailRevamp: 'https://stitch.withgoogle.com/preview/14470469387354206502?node-id=96361b575f2f45d9a64700e9476d3cdf',
+  cars24Pdi: 'https://www.cars24.com/pre-delivery-inspection/',
+  live17: 'https://play.google.com/store/apps/details?id=com.machipopo.media17&hl=en_US',
+};
+
 export const metrics = [
   { tag: 'Ownership', color: 'var(--c2)', value: '7,000+', label: 'PDI orders processed every month', note: 'Owned end to end, live across 3 platforms' },
   { tag: 'Revenue', color: 'var(--c5)', value: '+5%', label: 'Revenue uplift from one refactor', note: 'Vehicle History: errors −30%, conversion +2%' },
@@ -14,6 +21,7 @@ export const platforms = [
     text: 'A multi-tenant inspection platform built in Java/Spring Boot on PostgreSQL and MongoDB, with config-driven pricing, Kafka-driven event flows, AWS Lambda report generation, and an ops dashboard for step-level tracking and manual intervention. Product-side configuration moved into a custom CMS, so pricing, schemas and views ship without engineering.',
     proof: '7,000+ orders/month · 3 platforms · code discrepancy −8% · dev involvement −50%',
     tags: ['Java', 'Spring Boot', 'PostgreSQL', 'MongoDB', 'Kafka', 'AWS Lambda', 'S3', 'Redis', 'Multi-tenancy'],
+    link: LINKS.cars24Pdi,
   },
   {
     period: '17Live · 2022 — 2025', color: 'var(--c3)',
@@ -21,6 +29,11 @@ export const platforms = [
     text: 'The real-time backend behind chat, poking and voice, architected on Java Sockets with Redis caching and heartbeat mechanisms, load-tested to 50,000+ concurrent connections. Alongside it: REST API performance work, OpenAI-backed speech-to-text and summarisation, and the BigQuery pipeline feeding recommendations.',
     proof: '50,000+ concurrent connections · 10s → 2s API latency · moderation effort −60%',
     tags: ['Java Sockets', 'Spring Boot', 'Redis', 'PostgreSQL', 'BigQuery', 'OpenAI APIs', 'Firebase Auth'],
+    link: LINKS.live17,
+    links: [
+      { label: 'New Product', url: LINKS.debatabl },
+      { label: '17Live', url: LINKS.live17 },
+    ],
   },
 ];
 
@@ -60,11 +73,13 @@ export const projects = [
     name: 'DebatabL', color: 'var(--c3)', kind: 'Real-time Android platform · Java',
     text: 'Real-time backend with concurrent room management, RBAC and live scoring across 50+ rooms. Built on OOP and SOLID principles with unit-tested core modules, delivered as an Android platform for structured live debates.',
     tags: ['Concurrency', 'RBAC', 'SOLID', 'Unit testing'],
+    link: LINKS.debatabl,
   },
   {
     name: 'Retail Revamp', color: 'var(--c5)', kind: 'Offline-first sync engine · Java',
     text: 'The engine behind the retail product above: conflict-resolving sync for 1,000+ transactions and 20+ concurrent users at sub-500ms, a SQL schema for multi-device sync, and Whisper voice commands for low-literacy users.',
     tags: ['Java', 'SQL schema design', 'Conflict resolution', 'Whisper'],
+    link: LINKS.retailRevamp,
   },
 ];
 
