@@ -1,5 +1,3 @@
-import { supabase } from './supabase';
-
 const APP_ENV = import.meta.env.VITE_APP_ENV || (import.meta.env.PROD ? 'production' : 'staging');
 
 let clickTrackingInit = false;
@@ -15,35 +13,45 @@ function getVisitorId() {
 }
 
 export async function trackPageView(pagePath) {
-  if (!supabase) {
-    console.warn('[analytics] supabase not configured — skipping page view');
-    return;
+  try {
+    const res = await fetch('/api/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'pageview',
+        visitor_id: getVisitorId(),
+        page_path: pagePath || window.location.pathname,
+        referrer: document.referrer || null,
+        user_agent: navigator.userAgent,
+        screen_w: window.screen.width,
+        screen_h: window.screen.height,
+        environment: APP_ENV,
+      }),
+    });
+    if (!res.ok) console.error('[analytics] page_view failed:', res.status);
+  } catch (err) {
+    console.error('[analytics] page_view failed:', err.message);
   }
-  const { error } = await supabase.from('page_views').insert({
-    visitor_id: getVisitorId(),
-    page_path: pagePath || window.location.pathname,
-    referrer: document.referrer || null,
-    user_agent: navigator.userAgent,
-    screen_w: window.screen.width,
-    screen_h: window.screen.height,
-    environment: APP_ENV,
-  });
-  if (error) console.error('[analytics] page_view insert failed:', error.message);
 }
 
 export async function trackClick(buttonName, metadata = {}) {
-  if (!supabase) {
-    console.warn('[analytics] supabase not configured — skipping click');
-    return;
+  try {
+    const res = await fetch('/api/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'click',
+        visitor_id: getVisitorId(),
+        button_name: buttonName,
+        page_path: window.location.pathname,
+        metadata,
+        environment: APP_ENV,
+      }),
+    });
+    if (!res.ok) console.error('[analytics] click failed:', res.status);
+  } catch (err) {
+    console.error('[analytics] click failed:', err.message);
   }
-  const { error } = await supabase.from('click_events').insert({
-    visitor_id: getVisitorId(),
-    button_name: buttonName,
-    page_path: window.location.pathname,
-    metadata,
-    environment: APP_ENV,
-  });
-  if (error) console.error('[analytics] click_event insert failed:', error.message);
 }
 
 export function initClickTracking() {

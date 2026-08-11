@@ -1,9 +1,11 @@
 {
   "buildCommand": "vite build",
+  "devCommand": "vite",
   "outputDirectory": "build",
   "rewrites": [
     { "source": "/api/notes", "destination": "/api/notes" },
     { "source": "/api/contact", "destination": "/api/contact" },
+    { "source": "/api/track", "destination": "/api/track" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

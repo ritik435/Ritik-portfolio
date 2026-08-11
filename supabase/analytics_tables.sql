@@ -12,7 +12,12 @@ CREATE TABLE IF NOT EXISTS page_views (
   user_agent  TEXT,
   screen_w    INT,
   screen_h    INT,
+  ip          TEXT,
+  city        TEXT,
+  region      TEXT,
   country     TEXT,
+  latitude    DOUBLE PRECISION,
+  longitude   DOUBLE PRECISION,
   environment TEXT NOT NULL DEFAULT 'production',
   created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
 );
@@ -24,6 +29,12 @@ CREATE TABLE IF NOT EXISTS click_events (
   button_name TEXT NOT NULL,
   page_path   TEXT NOT NULL,
   metadata    JSONB DEFAULT '{}',
+  ip          TEXT,
+  city        TEXT,
+  region      TEXT,
+  country     TEXT,
+  latitude    DOUBLE PRECISION,
+  longitude   DOUBLE PRECISION,
   environment TEXT NOT NULL DEFAULT 'production',
   created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
 );
@@ -171,3 +182,34 @@ FROM page_views
 WHERE environment = 'production' AND screen_w IS NOT NULL
 GROUP BY screen_w, screen_h
 ORDER BY unique_visitors DESC;
+
+-- Geo breakdown (prod)
+SELECT
+  country,
+  city,
+  region,
+  COUNT(*) AS views,
+  COUNT(DISTINCT visitor_id) AS unique_visitors
+FROM page_views
+WHERE environment = 'production' AND country IS NOT NULL
+GROUP BY country, city, region
+ORDER BY views DESC;
+
+
+-- ============================================================
+-- MIGRATION: Add geo columns to existing tables
+-- Run this if tables already exist without geo columns
+-- ============================================================
+
+ALTER TABLE page_views ADD COLUMN IF NOT EXISTS ip TEXT;
+ALTER TABLE page_views ADD COLUMN IF NOT EXISTS city TEXT;
+ALTER TABLE page_views ADD COLUMN IF NOT EXISTS region TEXT;
+ALTER TABLE page_views ADD COLUMN IF NOT EXISTS latitude DOUBLE PRECISION;
+ALTER TABLE page_views ADD COLUMN IF NOT EXISTS longitude DOUBLE PRECISION;
+
+ALTER TABLE click_events ADD COLUMN IF NOT EXISTS ip TEXT;
+ALTER TABLE click_events ADD COLUMN IF NOT EXISTS city TEXT;
+ALTER TABLE click_events ADD COLUMN IF NOT EXISTS region TEXT;
+ALTER TABLE click_events ADD COLUMN IF NOT EXISTS country TEXT;
+ALTER TABLE click_events ADD COLUMN IF NOT EXISTS latitude DOUBLE PRECISION;
+ALTER TABLE click_events ADD COLUMN IF NOT EXISTS longitude DOUBLE PRECISION;
